@@ -150,7 +150,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTask_Assignments() {
+	public EReference getTask_Assignment() {
 		return (EReference) taskEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -329,7 +329,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Create classes and their features
 		taskEClass = createEClass(TASK);
 		createEReference(taskEClass, TASK__QUALIFICATIONS_REQUIRED);
-		createEReference(taskEClass, TASK__ASSIGNMENTS);
+		createEReference(taskEClass, TASK__ASSIGNMENT);
 		createEAttribute(taskEClass, TASK__NAME);
 		createEAttribute(taskEClass, TASK__ESTIMATE);
 		createEReference(taskEClass, TASK__REQUIREMENTS_TO_START);
@@ -391,7 +391,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getTask_QualificationsRequired(), this.getQualification(), null, "qualificationsRequired", null,
 				0, -1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTask_Assignments(), this.getAssignment(), null, "assignments", null, 0, -1, Task.class,
+		initEReference(getTask_Assignment(), this.getAssignment(), null, "assignment", null, 0, 1, Task.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTask_Name(), theXMLTypePackage.getString(), "Name", null, 0, 1, Task.class, !IS_TRANSIENT,

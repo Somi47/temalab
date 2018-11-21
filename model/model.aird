@@ -319,9 +319,9 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_8Cs_MOvuEeiRDomC5bXwfQ" name="[0..*] assignments" sourceNode="_UXAtEOvuEeiRDomC5bXwfQ" targetNode="_e719wOvuEeiRDomC5bXwfQ">
-      <target xmi:type="ecore:EReference" href="model.ecore#//Task/assignments"/>
-      <semanticElements xmi:type="ecore:EReference" href="model.ecore#//Task/assignments"/>
+    <ownedDiagramElements xmi:type="diagram:DEdge" xmi:id="_8Cs_MOvuEeiRDomC5bXwfQ" name="[0..1] assignment" sourceNode="_UXAtEOvuEeiRDomC5bXwfQ" targetNode="_e719wOvuEeiRDomC5bXwfQ">
+      <target xmi:type="ecore:EReference" href="model.ecore#//Task/assignment"/>
+      <semanticElements xmi:type="ecore:EReference" href="model.ecore#//Task/assignment"/>
       <ownedStyle xmi:type="diagram:EdgeStyle" xmi:id="_8CtmQOvuEeiRDomC5bXwfQ" description="_2X9p8OvuEeiRDomC5bXwfQ" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
         <centerLabelStyle xmi:type="diagram:CenterLabelStyle" xmi:id="_8CtmQevuEeiRDomC5bXwfQ" showIcon="false">
           <customFeatures>labelSize</customFeatures>

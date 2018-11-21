@@ -12,7 +12,7 @@
       ecorePackage="model.ecore#/">
     <genClasses ecoreClass="model.ecore#//Task">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Task/qualificationsRequired"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Task/assignments"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Task/assignment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Task/Name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Task/Estimate"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Task/requirementsToStart"/>

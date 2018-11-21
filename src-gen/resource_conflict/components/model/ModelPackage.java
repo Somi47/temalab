@@ -76,13 +76,13 @@ public interface ModelPackage extends EPackage {
 	int TASK__QUALIFICATIONS_REQUIRED = 0;
 
 	/**
-	 * The feature id for the '<em><b>Assignments</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Assignment</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TASK__ASSIGNMENTS = 1;
+	int TASK__ASSIGNMENT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -344,15 +344,15 @@ public interface ModelPackage extends EPackage {
 	EReference getTask_QualificationsRequired();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link resource_conflict.components.model.Task#getAssignments <em>Assignments</em>}'.
+	 * Returns the meta object for the containment reference '{@link resource_conflict.components.model.Task#getAssignment <em>Assignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Assignments</em>'.
-	 * @see resource_conflict.components.model.Task#getAssignments()
+	 * @return the meta object for the containment reference '<em>Assignment</em>'.
+	 * @see resource_conflict.components.model.Task#getAssignment()
 	 * @see #getTask()
 	 * @generated
 	 */
-	EReference getTask_Assignments();
+	EReference getTask_Assignment();
 
 	/**
 	 * Returns the meta object for the attribute '{@link resource_conflict.components.model.Task#getName <em>Name</em>}'.
@@ -568,12 +568,12 @@ public interface ModelPackage extends EPackage {
 		EReference TASK__QUALIFICATIONS_REQUIRED = eINSTANCE.getTask_QualificationsRequired();
 
 		/**
-		 * The meta object literal for the '<em><b>Assignments</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Assignment</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TASK__ASSIGNMENTS = eINSTANCE.getTask_Assignments();
+		EReference TASK__ASSIGNMENT = eINSTANCE.getTask_Assignment();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.

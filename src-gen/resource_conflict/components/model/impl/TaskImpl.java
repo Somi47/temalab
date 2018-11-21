@@ -14,11 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 import resource_conflict.components.model.Assignment;
 import resource_conflict.components.model.ModelPackage;
 import resource_conflict.components.model.Qualification;
@@ -33,7 +29,7 @@ import resource_conflict.components.model.Task;
  * </p>
  * <ul>
  *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getQualificationsRequired <em>Qualifications Required</em>}</li>
- *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getName <em>Name</em>}</li>
  *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link resource_conflict.components.model.impl.TaskImpl#getRequirementsToStart <em>Requirements To Start</em>}</li>
@@ -53,14 +49,14 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	protected EList<Qualification> qualificationsRequired;
 
 	/**
-	 * The cached value of the '{@link #getAssignments() <em>Assignments</em>}' containment reference list.
+	 * The cached value of the '{@link #getAssignment() <em>Assignment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getAssignments()
+	 * @see #getAssignment()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Assignment> assignments;
+	protected Assignment assignment;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -149,12 +145,49 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Assignment> getAssignments() {
-		if (assignments == null) {
-			assignments = new EObjectContainmentEList<Assignment>(Assignment.class, this,
-					ModelPackage.TASK__ASSIGNMENTS);
+	public Assignment getAssignment() {
+		return assignment;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetAssignment(Assignment newAssignment, NotificationChain msgs) {
+		Assignment oldAssignment = assignment;
+		assignment = newAssignment;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+					ModelPackage.TASK__ASSIGNMENT, oldAssignment, newAssignment);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
 		}
-		return assignments;
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setAssignment(Assignment newAssignment) {
+		if (newAssignment != assignment) {
+			NotificationChain msgs = null;
+			if (assignment != null)
+				msgs = ((InternalEObject) assignment).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - ModelPackage.TASK__ASSIGNMENT, null, msgs);
+			if (newAssignment != null)
+				msgs = ((InternalEObject) newAssignment).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - ModelPackage.TASK__ASSIGNMENT, null, msgs);
+			msgs = basicSetAssignment(newAssignment, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TASK__ASSIGNMENT, newAssignment,
+					newAssignment));
 	}
 
 	/**
@@ -220,8 +253,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ModelPackage.TASK__ASSIGNMENTS:
-			return ((InternalEList<?>) getAssignments()).basicRemove(otherEnd, msgs);
+		case ModelPackage.TASK__ASSIGNMENT:
+			return basicSetAssignment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -236,8 +269,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		switch (featureID) {
 		case ModelPackage.TASK__QUALIFICATIONS_REQUIRED:
 			return getQualificationsRequired();
-		case ModelPackage.TASK__ASSIGNMENTS:
-			return getAssignments();
+		case ModelPackage.TASK__ASSIGNMENT:
+			return getAssignment();
 		case ModelPackage.TASK__NAME:
 			return getName();
 		case ModelPackage.TASK__ESTIMATE:
@@ -261,9 +294,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 			getQualificationsRequired().clear();
 			getQualificationsRequired().addAll((Collection<? extends Qualification>) newValue);
 			return;
-		case ModelPackage.TASK__ASSIGNMENTS:
-			getAssignments().clear();
-			getAssignments().addAll((Collection<? extends Assignment>) newValue);
+		case ModelPackage.TASK__ASSIGNMENT:
+			setAssignment((Assignment) newValue);
 			return;
 		case ModelPackage.TASK__NAME:
 			setName((String) newValue);
@@ -290,8 +322,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		case ModelPackage.TASK__QUALIFICATIONS_REQUIRED:
 			getQualificationsRequired().clear();
 			return;
-		case ModelPackage.TASK__ASSIGNMENTS:
-			getAssignments().clear();
+		case ModelPackage.TASK__ASSIGNMENT:
+			setAssignment((Assignment) null);
 			return;
 		case ModelPackage.TASK__NAME:
 			setName(NAME_EDEFAULT);
@@ -316,8 +348,8 @@ public class TaskImpl extends MinimalEObjectImpl.Container implements Task {
 		switch (featureID) {
 		case ModelPackage.TASK__QUALIFICATIONS_REQUIRED:
 			return qualificationsRequired != null && !qualificationsRequired.isEmpty();
-		case ModelPackage.TASK__ASSIGNMENTS:
-			return assignments != null && !assignments.isEmpty();
+		case ModelPackage.TASK__ASSIGNMENT:
+			return assignment != null;
 		case ModelPackage.TASK__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case ModelPackage.TASK__ESTIMATE:

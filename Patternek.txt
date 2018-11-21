@@ -1,0 +1,3 @@
+Minden taskra, a hozzá tartozó assignment hossza pont a task hossza
+Minden personra igaz, hogy az assignment-jeinek intervalluma nem metszik egymást.
+Egy task bármely assignmentjére igaz, hogy a task szükséges qualification-je részhalmaza az assignment szeményének qualification-jének.

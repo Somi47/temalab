@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link resource_conflict.components.model.Task#getQualificationsRequired <em>Qualifications Required</em>}</li>
- *   <li>{@link resource_conflict.components.model.Task#getAssignments <em>Assignments</em>}</li>
+ *   <li>{@link resource_conflict.components.model.Task#getAssignment <em>Assignment</em>}</li>
  *   <li>{@link resource_conflict.components.model.Task#getName <em>Name</em>}</li>
  *   <li>{@link resource_conflict.components.model.Task#getEstimate <em>Estimate</em>}</li>
  *   <li>{@link resource_conflict.components.model.Task#getRequirementsToStart <em>Requirements To Start</em>}</li>
@@ -44,20 +44,30 @@ public interface Task extends EObject {
 	EList<Qualification> getQualificationsRequired();
 
 	/**
-	 * Returns the value of the '<em><b>Assignments</b></em>' containment reference list.
-	 * The list contents are of type {@link resource_conflict.components.model.Assignment}.
+	 * Returns the value of the '<em><b>Assignment</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Assignments</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Assignment</em>' containment reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Assignments</em>' containment reference list.
-	 * @see resource_conflict.components.model.ModelPackage#getTask_Assignments()
+	 * @return the value of the '<em>Assignment</em>' containment reference.
+	 * @see #setAssignment(Assignment)
+	 * @see resource_conflict.components.model.ModelPackage#getTask_Assignment()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Assignment> getAssignments();
+	Assignment getAssignment();
+
+	/**
+	 * Sets the value of the '{@link resource_conflict.components.model.Task#getAssignment <em>Assignment</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Assignment</em>' containment reference.
+	 * @see #getAssignment()
+	 * @generated
+	 */
+	void setAssignment(Assignment value);
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
