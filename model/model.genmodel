@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/resource_conflict.components.model/src-gen" creationIcons="false"
+    editDirectory="/resource_conflict.components.model.edit/src-gen" editorDirectory="/resource_conflict.components.model.editor/src-gen"
+    modelPluginID="resource_conflict.components.model" modelName="Model" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    codeFormatting="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="8.0"
+    copyrightFields="false" operationReflection="true" importOrganizing="true">
+  <foreignModel>model.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Model" basePackage="resource_conflict.components" disposableProviderFactory="true"
+      ecorePackage="model.ecore#/">
+    <genClasses ecoreClass="model.ecore#//Task">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Task/qualificationsRequired"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Task/assignments"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Task/Name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Task/Estimate"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Task/requirementsToStart"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Person">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Person/qualifications"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Person/assignment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Person/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Qualification">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Qualification/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Assignment">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Assignment/From"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Assignment/To"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//Assignment/person"/>
+    </genClasses>
+    <genClasses ecoreClass="model.ecore#//Component">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Component/tasks"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Component/Name"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
