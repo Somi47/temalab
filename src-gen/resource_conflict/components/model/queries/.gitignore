@@ -4,3 +4,15 @@
 /.IntersectingAllocation.java._trace
 /.Qualifications.java._trace
 /.UnqualifiedAllocation.java._trace
+/.PatternAssignmentFromNegative.java._trace
+/.PatternAssignmentNegativeLength.java._trace
+/DifferentTaskLength.java
+/IntersectingAllocation.java
+/Qualifications.java
+/UnqualifiedAllocation.java
+/.ComponentWithNoName.java._trace
+/.QualificationWithNoName.java._trace
+/.TaskWithNoName.java._trace
+/PersonWithNoName.java
+/Queries.java
+/.CanAssign.java._trace

@@ -90,13 +90,12 @@ public class UsingComponentResourceConflict {
     	
     	// TESTING FITNESS
     	Assignment a1 = factory.createAssignment();
-    	a1.setTo(10);
+    	a1.setTo(5);
     	taskDesignSearchEngine.setAssignment(a1);
     	
-    	double fitness = FitnessCalculator.CalculateFitness(ap);
+    	double fitness = FitnessObjective.CalculateFitness(ap);
     	System.out.println(fitness);
     	
-    	/*
     	ResourceSet rs = new ResourceSetImpl();
     	Resource r = rs.createResource(URI.createFileURI("example.xmi"));
     	r.getContents().add(ap);
@@ -107,6 +106,5 @@ public class UsingComponentResourceConflict {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		*/
 	}
 }

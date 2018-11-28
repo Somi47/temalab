@@ -33,6 +33,16 @@ pattern unqualifiedAllocation(t:Task, p:Person) {
 	neg find qualifications(p,q);
 }
 
+private pattern taskAssigned(t) {
+	Task.assignment(t,_);
+}
+
+pattern canAssign(t:Task, p:Person) {
+	neg find taskAssigned(t);
+	neg find unqualifiedAllocation(t,p);
+	AllocationProblem.persons(a,p);
+	AllocationProblem.components.tasks(a,t);
+}
 // Error constraints
 @Constraint(severity = "error", message = "Assignment can not be from negative time", key = {a})
 pattern patternAssignmentFromNegative(a : Assignment) {

@@ -6,7 +6,9 @@
     <tasks qualificationsRequired="//@qualificationTypes.2" Name="Test frontend gui" Estimate="3" requirementsToStart="//@components.0/@tasks.1"/>
   </components>
   <components Name="Search engine">
-    <tasks qualificationsRequired="//@qualificationTypes.0" Name="Desing search engine" Estimate="2"/>
+    <tasks qualificationsRequired="//@qualificationTypes.0" Name="Desing search engine" Estimate="2">
+      <assignment To="5"/>
+    </tasks>
   </components>
   <qualificationTypes Name="Designer"/>
   <qualificationTypes Name="Developer"/>

@@ -6,11 +6,17 @@
   </extension>
   <extension id="resource_conflict.components.model.queries.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
     <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:resource_conflict.components.model.queries.Queries" id="resource_conflict.components.model.queries.Queries">
-      <query-specification fqn="resource_conflict.components.model.queries.personWithNoName"/>
       <query-specification fqn="resource_conflict.components.model.queries.differentTaskLength"/>
       <query-specification fqn="resource_conflict.components.model.queries.intersectingAllocation"/>
       <query-specification fqn="resource_conflict.components.model.queries.qualifications"/>
       <query-specification fqn="resource_conflict.components.model.queries.unqualifiedAllocation"/>
+      <query-specification fqn="resource_conflict.components.model.queries.canAssign"/>
+      <query-specification fqn="resource_conflict.components.model.queries.patternAssignmentFromNegative"/>
+      <query-specification fqn="resource_conflict.components.model.queries.patternAssignmentNegativeLength"/>
+      <query-specification fqn="resource_conflict.components.model.queries.personWithNoName"/>
+      <query-specification fqn="resource_conflict.components.model.queries.qualificationWithNoName"/>
+      <query-specification fqn="resource_conflict.components.model.queries.componentWithNoName"/>
+      <query-specification fqn="resource_conflict.components.model.queries.taskWithNoName"/>
     </group>
   </extension>
 </plugin>

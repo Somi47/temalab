@@ -27,13 +27,15 @@ import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IExpressionEvaluator;
+import org.eclipse.viatra.query.runtime.matchers.psystem.IValueProvider;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
 import org.eclipse.viatra.query.runtime.matchers.psystem.annotations.PAnnotation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.annotations.ParameterReference;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExpressionEvaluation;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PParameterDirection;
@@ -41,17 +43,18 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import resource_conflict.components.model.Person;
+import resource_conflict.components.model.Assignment;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
  * 
  * <p>Original source:
  *         <code><pre>
- *         // Warning constraints
- *         {@literal @}Constraint(severity = "warning", message = "Person with no name", key = {p})
- *         pattern personWithNoName(p : Person) {
- *             Person.Name(p,"");
+ *         {@literal @}Constraint(severity = "error", message = "Assignment negative length", key = {a})
+ *         pattern patternAssignmentNegativeLength(a : Assignment) {
+ *             Assignment.From(a,from);
+ *             Assignment.To(a,to);
+ *             check(to {@literal <} from);
  *         }
  * </pre></code>
  * 
@@ -60,9 +63,9 @@ import resource_conflict.components.model.Person;
  * 
  */
 @SuppressWarnings("all")
-public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<PersonWithNoName.Matcher> {
+public final class PatternAssignmentNegativeLength extends BaseGeneratedEMFQuerySpecification<PatternAssignmentNegativeLength.Matcher> {
   /**
-   * Pattern-specific match representation of the resource_conflict.components.model.queries.personWithNoName pattern,
+   * Pattern-specific match representation of the resource_conflict.components.model.queries.patternAssignmentNegativeLength pattern,
    * to be used in conjunction with {@link Matcher}.
    * 
    * <p>Class fields correspond to parameters of the pattern. Fields with value null are considered unassigned.
@@ -74,69 +77,69 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Person fP;
+    private Assignment fA;
     
-    private static List<String> parameterNames = makeImmutableList("p");
+    private static List<String> parameterNames = makeImmutableList("a");
     
-    private Match(final Person pP) {
-      this.fP = pP;
+    private Match(final Assignment pA) {
+      this.fA = pA;
     }
     
     @Override
     public Object get(final String parameterName) {
-      if ("p".equals(parameterName)) return this.fP;
+      if ("a".equals(parameterName)) return this.fA;
       return null;
     }
     
-    public Person getP() {
-      return this.fP;
+    public Assignment getA() {
+      return this.fA;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("p".equals(parameterName) ) {
-          this.fP = (Person) newValue;
+      if ("a".equals(parameterName) ) {
+          this.fA = (Assignment) newValue;
           return true;
       }
       return false;
     }
     
-    public void setP(final Person pP) {
+    public void setA(final Assignment pA) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fP = pP;
+      this.fA = pA;
     }
     
     @Override
     public String patternName() {
-      return "resource_conflict.components.model.queries.personWithNoName";
+      return "resource_conflict.components.model.queries.patternAssignmentNegativeLength";
     }
     
     @Override
     public List<String> parameterNames() {
-      return PersonWithNoName.Match.parameterNames;
+      return PatternAssignmentNegativeLength.Match.parameterNames;
     }
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fP};
+      return new Object[]{fA};
     }
     
     @Override
-    public PersonWithNoName.Match toImmutable() {
-      return isMutable() ? newMatch(fP) : this;
+    public PatternAssignmentNegativeLength.Match toImmutable() {
+      return isMutable() ? newMatch(fA) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"p\"=" + prettyPrintValue(fP));
+      result.append("\"a\"=" + prettyPrintValue(fA));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fP);
+      return Objects.hash(fA);
     }
     
     @Override
@@ -146,9 +149,9 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
       if (obj == null) {
           return false;
       }
-      if ((obj instanceof PersonWithNoName.Match)) {
-          PersonWithNoName.Match other = (PersonWithNoName.Match) obj;
-          return Objects.equals(fP, other.fP);
+      if ((obj instanceof PatternAssignmentNegativeLength.Match)) {
+          PatternAssignmentNegativeLength.Match other = (PatternAssignmentNegativeLength.Match) obj;
+          return Objects.equals(fA, other.fA);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -160,8 +163,8 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
     }
     
     @Override
-    public PersonWithNoName specification() {
-      return PersonWithNoName.instance();
+    public PatternAssignmentNegativeLength specification() {
+      return PatternAssignmentNegativeLength.instance();
     }
     
     /**
@@ -171,7 +174,7 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * @return the empty match.
      * 
      */
-    public static PersonWithNoName.Match newEmptyMatch() {
+    public static PatternAssignmentNegativeLength.Match newEmptyMatch() {
       return new Mutable(null);
     }
     
@@ -179,29 +182,29 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static PersonWithNoName.Match newMutableMatch(final Person pP) {
-      return new Mutable(pP);
+    public static PatternAssignmentNegativeLength.Match newMutableMatch(final Assignment pA) {
+      return new Mutable(pA);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static PersonWithNoName.Match newMatch(final Person pP) {
-      return new Immutable(pP);
+    public static PatternAssignmentNegativeLength.Match newMatch(final Assignment pA) {
+      return new Immutable(pA);
     }
     
-    private static final class Mutable extends PersonWithNoName.Match {
-      Mutable(final Person pP) {
-        super(pP);
+    private static final class Mutable extends PatternAssignmentNegativeLength.Match {
+      Mutable(final Assignment pA) {
+        super(pA);
       }
       
       @Override
@@ -210,9 +213,9 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
       }
     }
     
-    private static final class Immutable extends PersonWithNoName.Match {
-      Immutable(final Person pP) {
-        super(pP);
+    private static final class Immutable extends PatternAssignmentNegativeLength.Match {
+      Immutable(final Assignment pA) {
+        super(pA);
       }
       
       @Override
@@ -223,7 +226,7 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
   }
   
   /**
-   * Generated pattern matcher API of the resource_conflict.components.model.queries.personWithNoName pattern,
+   * Generated pattern matcher API of the resource_conflict.components.model.queries.patternAssignmentNegativeLength pattern,
    * providing pattern-specific query methods.
    * 
    * <p>Use the pattern matcher on a given model via {@link #on(ViatraQueryEngine)},
@@ -233,18 +236,19 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
    * 
    * <p>Original source:
    * <code><pre>
-   * // Warning constraints
-   * {@literal @}Constraint(severity = "warning", message = "Person with no name", key = {p})
-   * pattern personWithNoName(p : Person) {
-   *     Person.Name(p,"");
+   * {@literal @}Constraint(severity = "error", message = "Assignment negative length", key = {a})
+   * pattern patternAssignmentNegativeLength(a : Assignment) {
+   *     Assignment.From(a,from);
+   *     Assignment.To(a,to);
+   *     check(to {@literal <} from);
    * }
    * </pre></code>
    * 
    * @see Match
-   * @see PersonWithNoName
+   * @see PatternAssignmentNegativeLength
    * 
    */
-  public static class Matcher extends BaseMatcher<PersonWithNoName.Match> {
+  public static class Matcher extends BaseMatcher<PatternAssignmentNegativeLength.Match> {
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
      * If the pattern matcher is already constructed in the engine, only a light-weight reference is returned.
@@ -253,7 +257,7 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * @throws ViatraQueryRuntimeException if an error occurs during pattern matcher creation
      * 
      */
-    public static PersonWithNoName.Matcher on(final ViatraQueryEngine engine) {
+    public static PatternAssignmentNegativeLength.Matcher on(final ViatraQueryEngine engine) {
       // check if matcher already exists
       Matcher matcher = engine.getExistingMatcher(querySpecification());
       if (matcher == null) {
@@ -268,13 +272,13 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * @noreference This method is for internal matcher initialization by the framework, do not call it manually.
      * 
      */
-    public static PersonWithNoName.Matcher create() {
+    public static PatternAssignmentNegativeLength.Matcher create() {
       return new Matcher();
     }
     
-    private final static int POSITION_P = 0;
+    private final static int POSITION_A = 0;
     
-    private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(PersonWithNoName.Matcher.class);
+    private final static Logger LOGGER = ViatraQueryLoggingUtil.getLogger(PatternAssignmentNegativeLength.Matcher.class);
     
     /**
      * Initializes the pattern matcher within an existing VIATRA Query engine.
@@ -290,12 +294,12 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<PersonWithNoName.Match> getAllMatches(final Person pP) {
-      return rawStreamAllMatches(new Object[]{pP}).collect(Collectors.toSet());
+    public Collection<PatternAssignmentNegativeLength.Match> getAllMatches(final Assignment pA) {
+      return rawStreamAllMatches(new Object[]{pA}).collect(Collectors.toSet());
     }
     
     /**
@@ -304,101 +308,101 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<PersonWithNoName.Match> streamAllMatches(final Person pP) {
-      return rawStreamAllMatches(new Object[]{pP});
+    public Stream<PatternAssignmentNegativeLength.Match> streamAllMatches(final Assignment pA) {
+      return rawStreamAllMatches(new Object[]{pA});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<PersonWithNoName.Match> getOneArbitraryMatch(final Person pP) {
-      return rawGetOneArbitraryMatch(new Object[]{pP});
+    public Optional<PatternAssignmentNegativeLength.Match> getOneArbitraryMatch(final Assignment pA) {
+      return rawGetOneArbitraryMatch(new Object[]{pA});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Person pP) {
-      return rawHasMatch(new Object[]{pP});
+    public boolean hasMatch(final Assignment pA) {
+      return rawHasMatch(new Object[]{pA});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Person pP) {
-      return rawCountMatches(new Object[]{pP});
+    public int countMatches(final Assignment pA) {
+      return rawCountMatches(new Object[]{pA});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Person pP, final Consumer<? super PersonWithNoName.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pP}, processor);
+    public boolean forOneArbitraryMatch(final Assignment pA, final Consumer<? super PatternAssignmentNegativeLength.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pA}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pP the fixed value of pattern parameter p, or null if not bound.
+     * @param pA the fixed value of pattern parameter a, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public PersonWithNoName.Match newMatch(final Person pP) {
-      return PersonWithNoName.Match.newMatch(pP);
+    public PatternAssignmentNegativeLength.Match newMatch(final Assignment pA) {
+      return PatternAssignmentNegativeLength.Match.newMatch(pA);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for p.
+     * Retrieve the set of values that occur in matches for a.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Person> rawStreamAllValuesOfp(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_P, parameters).map(Person.class::cast);
+    protected Stream<Assignment> rawStreamAllValuesOfa(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_A, parameters).map(Assignment.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for p.
+     * Retrieve the set of values that occur in matches for a.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Person> getAllValuesOfp() {
-      return rawStreamAllValuesOfp(emptyArray()).collect(Collectors.toSet());
+    public Set<Assignment> getAllValuesOfa() {
+      return rawStreamAllValuesOfa(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for p.
+     * Retrieve the set of values that occur in matches for a.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Person> streamAllValuesOfp() {
-      return rawStreamAllValuesOfp(emptyArray());
+    public Stream<Assignment> streamAllValuesOfa() {
+      return rawStreamAllValuesOfa(emptyArray());
     }
     
     @Override
-    protected PersonWithNoName.Match tupleToMatch(final Tuple t) {
+    protected PatternAssignmentNegativeLength.Match tupleToMatch(final Tuple t) {
       try {
-          return PersonWithNoName.Match.newMatch((Person) t.get(POSITION_P));
+          return PatternAssignmentNegativeLength.Match.newMatch((Assignment) t.get(POSITION_A));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -406,9 +410,9 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
     }
     
     @Override
-    protected PersonWithNoName.Match arrayToMatch(final Object[] match) {
+    protected PatternAssignmentNegativeLength.Match arrayToMatch(final Object[] match) {
       try {
-          return PersonWithNoName.Match.newMatch((Person) match[POSITION_P]);
+          return PatternAssignmentNegativeLength.Match.newMatch((Assignment) match[POSITION_A]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -416,9 +420,9 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
     }
     
     @Override
-    protected PersonWithNoName.Match arrayToMatchMutable(final Object[] match) {
+    protected PatternAssignmentNegativeLength.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return PersonWithNoName.Match.newMutableMatch((Person) match[POSITION_P]);
+          return PatternAssignmentNegativeLength.Match.newMutableMatch((Assignment) match[POSITION_A]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -430,12 +434,12 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
      * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
      * 
      */
-    public static IQuerySpecification<PersonWithNoName.Matcher> querySpecification() {
-      return PersonWithNoName.instance();
+    public static IQuerySpecification<PatternAssignmentNegativeLength.Matcher> querySpecification() {
+      return PatternAssignmentNegativeLength.instance();
     }
   }
   
-  private PersonWithNoName() {
+  private PatternAssignmentNegativeLength() {
     super(GeneratedPQuery.INSTANCE);
   }
   
@@ -444,7 +448,7 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
    * @throws ViatraQueryRuntimeException if the pattern definition could not be loaded
    * 
    */
-  public static PersonWithNoName instance() {
+  public static PatternAssignmentNegativeLength instance() {
     try{
         return LazyHolder.INSTANCE;
     } catch (ExceptionInInitializerError err) {
@@ -453,35 +457,35 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
   }
   
   @Override
-  protected PersonWithNoName.Matcher instantiate(final ViatraQueryEngine engine) {
-    return PersonWithNoName.Matcher.on(engine);
+  protected PatternAssignmentNegativeLength.Matcher instantiate(final ViatraQueryEngine engine) {
+    return PatternAssignmentNegativeLength.Matcher.on(engine);
   }
   
   @Override
-  public PersonWithNoName.Matcher instantiate() {
-    return PersonWithNoName.Matcher.create();
+  public PatternAssignmentNegativeLength.Matcher instantiate() {
+    return PatternAssignmentNegativeLength.Matcher.create();
   }
   
   @Override
-  public PersonWithNoName.Match newEmptyMatch() {
-    return PersonWithNoName.Match.newEmptyMatch();
+  public PatternAssignmentNegativeLength.Match newEmptyMatch() {
+    return PatternAssignmentNegativeLength.Match.newEmptyMatch();
   }
   
   @Override
-  public PersonWithNoName.Match newMatch(final Object... parameters) {
-    return PersonWithNoName.Match.newMatch((resource_conflict.components.model.Person) parameters[0]);
+  public PatternAssignmentNegativeLength.Match newMatch(final Object... parameters) {
+    return PatternAssignmentNegativeLength.Match.newMatch((resource_conflict.components.model.Assignment) parameters[0]);
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: resource_conflict.components.model.queries.PersonWithNoName (visibility: PUBLIC, simpleName: PersonWithNoName, identifier: resource_conflict.components.model.queries.PersonWithNoName, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: resource_conflict.components.model.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link JvmGenericType: resource_conflict.components.model.queries.PatternAssignmentNegativeLength (visibility: PUBLIC, simpleName: PatternAssignmentNegativeLength, identifier: resource_conflict.components.model.queries.PatternAssignmentNegativeLength, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: resource_conflict.components.model.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: resource_conflict.components.model.queries.PersonWithNoName (visibility: PUBLIC, simpleName: PersonWithNoName, identifier: resource_conflict.components.model.queries.PersonWithNoName, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: resource_conflict.components.model.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link JvmGenericType: resource_conflict.components.model.queries.PatternAssignmentNegativeLength (visibility: PUBLIC, simpleName: PatternAssignmentNegativeLength, identifier: resource_conflict.components.model.queries.PatternAssignmentNegativeLength, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: resource_conflict.components.model.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
    */
   private static class LazyHolder {
-    private final static PersonWithNoName INSTANCE = new PersonWithNoName();
+    private final static PatternAssignmentNegativeLength INSTANCE = new PatternAssignmentNegativeLength();
     
     /**
      * Statically initializes the query specification <b>after</b> the field {@link #INSTANCE} is assigned.
@@ -499,11 +503,11 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
   }
   
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
-    private final static PersonWithNoName.GeneratedPQuery INSTANCE = new GeneratedPQuery();
+    private final static PatternAssignmentNegativeLength.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_p = new PParameter("p", "resource_conflict.components.model.Person", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.example.org/model", "Person")), PParameterDirection.INOUT);
+    private final PParameter parameter_a = new PParameter("a", "resource_conflict.components.model.Assignment", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.example.org/model", "Assignment")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_p);
+    private final List<PParameter> parameters = Arrays.asList(parameter_a);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -511,12 +515,12 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
     
     @Override
     public String getFullyQualifiedName() {
-      return "resource_conflict.components.model.queries.personWithNoName";
+      return "resource_conflict.components.model.queries.patternAssignmentNegativeLength";
     }
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("p");
+      return Arrays.asList("a");
     }
     
     @Override
@@ -530,31 +534,61 @@ public final class PersonWithNoName extends BaseGeneratedEMFQuerySpecification<P
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_p = body.getOrCreateVariableByName("p");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_p), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/model", "Person")));
+          PVariable var_a = body.getOrCreateVariableByName("a");
+          PVariable var_from = body.getOrCreateVariableByName("from");
+          PVariable var_to = body.getOrCreateVariableByName("to");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_a), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/model", "Assignment")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_p, parameter_p)
+             new ExportedParameter(body, var_a, parameter_a)
           ));
-          //     Person.Name(p,"")
+          //     Assignment.From(a,from)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_a), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/model", "Assignment")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_p), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/model", "Person")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_a, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.example.org/model", "Assignment", "From")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "Int")));
+          new Equality(body, var__virtual_0_, var_from);
+          //     Assignment.To(a,to)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_a), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.example.org/model", "Assignment")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_p, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.example.org/model", "Person", "Name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "String")));
-          new Equality(body, var__virtual_1_, var__virtual_0_);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_a, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.example.org/model", "Assignment", "To")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.eclipse.org/emf/2003/XMLType", "Int")));
+          new Equality(body, var__virtual_1_, var_to);
+          //     check(to < from)
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern patternAssignmentNegativeLength";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("from", "to");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer from = (Integer) provider.getValue("from");
+                  Integer to = (Integer) provider.getValue("to");
+                  return evaluateExpression_1_1(from, to);
+              }
+          },  null); 
           bodies.add(body);
       }
       {
           PAnnotation annotation = new PAnnotation("Constraint");
-          annotation.addAttribute("severity", "warning");
-          annotation.addAttribute("message", "Person with no name");
+          annotation.addAttribute("severity", "error");
+          annotation.addAttribute("message", "Assignment negative length");
           annotation.addAttribute("key", Arrays.asList(new Object[] {
-                              new ParameterReference("p")
+                              new ParameterReference("a")
                               }));
           addAnnotation(annotation);
       }
       return bodies;
     }
+  }
+  
+  private static boolean evaluateExpression_1_1(final Integer from, final Integer to) {
+    boolean _lessThan = (to.compareTo(from) < 0);
+    return _lessThan;
   }
 }
