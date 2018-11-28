@@ -3,10 +3,6 @@ package resource_conflict.components.model.queries
 import epackage "http://www.example.org/model"
 
 
-pattern personWithNoName(p : Person) {
-    Person.Name(p,"");
-}
-
 pattern differentTaskLength(t:Task, a:Assignment) {
 	Task.assignment(t,a);
 	Task.Estimate(t,taskEstimatedTime);
@@ -35,4 +31,39 @@ pattern unqualifiedAllocation(t:Task, p:Person) {
 	Task.qualificationsRequired(t,q);
 	Task.assignment.person(t,p);
 	neg find qualifications(p,q);
+}
+
+// Error constraints
+@Constraint(severity = "error", message = "Assignment can not be from negative time", key = {a})
+pattern patternAssignmentFromNegative(a : Assignment) {
+    Assignment.From(a,from);
+    check(from < 0);
+}
+
+@Constraint(severity = "error", message = "Assignment negative length", key = {a})
+pattern patternAssignmentNegativeLength(a : Assignment) {
+    Assignment.From(a,from);
+    Assignment.To(a,to);
+    check(to < from);
+}
+
+// Warning constraints
+@Constraint(severity = "warning", message = "Person with no name", key = {p})
+pattern personWithNoName(p : Person) {
+    Person.Name(p,"");
+}
+
+@Constraint(severity = "warning", message = "Qualification with no name", key = {q})
+pattern qualificationWithNoName(q : Qualification) {
+    Qualification.Name(q,"");
+}
+
+@Constraint(severity = "warning", message = "Component with no name", key = {c})
+pattern componentWithNoName(c : Component) {
+    Component.Name(c,"");
+}
+
+@Constraint(severity = "warning", message = "Task with no name", key = {t})
+pattern taskWithNoName(t : Task) {
+    Task.Name(t,"");
 }
