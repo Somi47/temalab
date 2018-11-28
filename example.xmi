@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ASCII"?>
+<model:AllocationProblem xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:model="http://www.example.org/model">
+  <components Name="Frontend gui">
+    <tasks qualificationsRequired="//@qualificationTypes.0" Name="Desing frontend gui" Estimate="4"/>
+    <tasks qualificationsRequired="//@qualificationTypes.1" Name="Prototype frontend gui" Estimate="7" requirementsToStart="//@components.0/@tasks.0"/>
+    <tasks qualificationsRequired="//@qualificationTypes.2" Name="Test frontend gui" Estimate="3" requirementsToStart="//@components.0/@tasks.1"/>
+  </components>
+  <components Name="Search engine">
+    <tasks qualificationsRequired="//@qualificationTypes.0" Name="Desing search engine" Estimate="2"/>
+  </components>
+  <qualificationTypes Name="Designer"/>
+  <qualificationTypes Name="Developer"/>
+  <qualificationTypes Name="Tester"/>
+  <persons qualifications="//@qualificationTypes.1 //@qualificationTypes.2" Name="Geza"/>
+  <persons qualifications="//@qualificationTypes.0 //@qualificationTypes.1" Name="Bela"/>
+</model:AllocationProblem>

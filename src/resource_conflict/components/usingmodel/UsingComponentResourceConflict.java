@@ -1,6 +1,15 @@
 package resource_conflict.components.usingmodel;
 
+import java.io.IOException;
+import java.util.Collections;
 
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+
+import resource_conflict.components.model.AllocationProblem;
 import resource_conflict.components.model.Component;
 import resource_conflict.components.model.ModelFactory;
 import resource_conflict.components.model.ModelPackage;
@@ -9,9 +18,10 @@ import resource_conflict.components.model.Qualification;
 import resource_conflict.components.model.Task;
 
 public class UsingComponentResourceConflict {
-	 public static void main(String[] args) {
+	public static void main(String[] args) {
 	    	ModelPackage.eINSTANCE.eClass();
 	    	ModelFactory factory = ModelFactory.eINSTANCE;
+	    	Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("xmi", new XMIResourceFactoryImpl());
 	    	
 	    	// OBJECTS:
 	    	Person personBela = factory.createPerson();
@@ -65,5 +75,27 @@ public class UsingComponentResourceConflict {
 	    	
 	    	taskTestFrontendGui.getQualificationsRequired().add(qualificationTester);
 	    	taskTestFrontendGui.getRequirementsToStart().add(taskPrototypeFrontendGui);
+	    	
+	    	AllocationProblem ap = factory.createAllocationProblem();
+	    	ap.getComponents().add(componentFrontendGui);
+	    	ap.getComponents().add(componentSearchEngine);
+	    	
+	    	ap.getPersons().add(personGeza);
+	    	ap.getPersons().add(personBela);
+	    	
+	    	ap.getQualificationTypes().add(qualificationDesigner);
+	    	ap.getQualificationTypes().add(qualificationDeveloper);
+	    	ap.getQualificationTypes().add(qualificationTester);
+	    	
+	    	ResourceSet rs = new ResourceSetImpl();
+	    	Resource r = rs.createResource(URI.createFileURI("example.xmi"));
+	    	r.getContents().add(ap);
+	    	
+	    	try {
+				r.save(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	 }
 }

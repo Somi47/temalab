@@ -1,17 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
-
-<!--
--->
-
-<plugin>
-
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated model -->
-      <package
-            uri="http://www.example.org/model"
-            class="resource_conflict.components.model.ModelPackage"
-            genModel="model/model.genmodel"/>
-   </extension>
-
+<?xml version="1.0" encoding="UTF-8"?><?eclipse version="3.0"?><!--
+--><plugin>
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <!-- @generated model -->
+    <package class="resource_conflict.components.model.ModelPackage" genModel="model/model.genmodel" uri="http://www.example.org/model"/>
+  </extension>
+  <extension id="resource_conflict.components.model.queries.Queries" point="org.eclipse.viatra.query.runtime.queryspecification">
+    <group group="org.eclipse.viatra.query.runtime.extensibility.SingletonExtensionFactory:resource_conflict.components.model.queries.Queries" id="resource_conflict.components.model.queries.Queries">
+      <query-specification fqn="resource_conflict.components.model.queries.personWithNoName"/>
+      <query-specification fqn="resource_conflict.components.model.queries.differentTaskLength"/>
+      <query-specification fqn="resource_conflict.components.model.queries.intersectingAllocation"/>
+      <query-specification fqn="resource_conflict.components.model.queries.qualifications"/>
+      <query-specification fqn="resource_conflict.components.model.queries.unqualifiedAllocation"/>
+    </group>
+  </extension>
 </plugin>

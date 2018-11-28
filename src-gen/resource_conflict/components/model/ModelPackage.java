@@ -323,6 +323,61 @@ public interface ModelPackage extends EPackage {
 	int COMPONENT_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link resource_conflict.components.model.impl.AllocationProblemImpl <em>Allocation Problem</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see resource_conflict.components.model.impl.AllocationProblemImpl
+	 * @see resource_conflict.components.model.impl.ModelPackageImpl#getAllocationProblem()
+	 * @generated
+	 */
+	int ALLOCATION_PROBLEM = 5;
+
+	/**
+	 * The feature id for the '<em><b>Components</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_PROBLEM__COMPONENTS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Qualification Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_PROBLEM__QUALIFICATION_TYPES = 1;
+
+	/**
+	 * The feature id for the '<em><b>Persons</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_PROBLEM__PERSONS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Allocation Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_PROBLEM_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Allocation Problem</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ALLOCATION_PROBLEM_OPERATION_COUNT = 0;
+
+	/**
 	 * Returns the meta object for class '{@link resource_conflict.components.model.Task <em>Task</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -527,6 +582,49 @@ public interface ModelPackage extends EPackage {
 	EAttribute getComponent_Name();
 
 	/**
+	 * Returns the meta object for class '{@link resource_conflict.components.model.AllocationProblem <em>Allocation Problem</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Allocation Problem</em>'.
+	 * @see resource_conflict.components.model.AllocationProblem
+	 * @generated
+	 */
+	EClass getAllocationProblem();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link resource_conflict.components.model.AllocationProblem#getComponents <em>Components</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Components</em>'.
+	 * @see resource_conflict.components.model.AllocationProblem#getComponents()
+	 * @see #getAllocationProblem()
+	 * @generated
+	 */
+	EReference getAllocationProblem_Components();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link resource_conflict.components.model.AllocationProblem#getQualificationTypes <em>Qualification Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Qualification Types</em>'.
+	 * @see resource_conflict.components.model.AllocationProblem#getQualificationTypes()
+	 * @see #getAllocationProblem()
+	 * @generated
+	 */
+	EReference getAllocationProblem_QualificationTypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link resource_conflict.components.model.AllocationProblem#getPersons <em>Persons</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Persons</em>'.
+	 * @see resource_conflict.components.model.AllocationProblem#getPersons()
+	 * @see #getAllocationProblem()
+	 * @generated
+	 */
+	EReference getAllocationProblem_Persons();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -710,6 +808,40 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute COMPONENT__NAME = eINSTANCE.getComponent_Name();
+
+		/**
+		 * The meta object literal for the '{@link resource_conflict.components.model.impl.AllocationProblemImpl <em>Allocation Problem</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see resource_conflict.components.model.impl.AllocationProblemImpl
+		 * @see resource_conflict.components.model.impl.ModelPackageImpl#getAllocationProblem()
+		 * @generated
+		 */
+		EClass ALLOCATION_PROBLEM = eINSTANCE.getAllocationProblem();
+
+		/**
+		 * The meta object literal for the '<em><b>Components</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALLOCATION_PROBLEM__COMPONENTS = eINSTANCE.getAllocationProblem_Components();
+
+		/**
+		 * The meta object literal for the '<em><b>Qualification Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALLOCATION_PROBLEM__QUALIFICATION_TYPES = eINSTANCE.getAllocationProblem_QualificationTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Persons</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ALLOCATION_PROBLEM__PERSONS = eINSTANCE.getAllocationProblem_Persons();
 
 	}
 

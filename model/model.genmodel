@@ -34,5 +34,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//Component/tasks"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Component/Name"/>
     </genClasses>
+    <genClasses ecoreClass="model.ecore#//AllocationProblem">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AllocationProblem/components"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AllocationProblem/qualificationTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//AllocationProblem/persons"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

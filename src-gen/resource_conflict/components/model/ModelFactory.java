@@ -67,6 +67,15 @@ public interface ModelFactory extends EFactory {
 	Component createComponent();
 
 	/**
+	 * Returns a new object of class '<em>Allocation Problem</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Allocation Problem</em>'.
+	 * @generated
+	 */
+	AllocationProblem createAllocationProblem();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

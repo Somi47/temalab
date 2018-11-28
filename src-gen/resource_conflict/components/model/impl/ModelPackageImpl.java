@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 
+import resource_conflict.components.model.AllocationProblem;
 import resource_conflict.components.model.Assignment;
 import resource_conflict.components.model.Component;
 import resource_conflict.components.model.ModelFactory;
@@ -62,6 +63,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	private EClass componentEClass = null;
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass allocationProblemEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
 	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
@@ -89,7 +97,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link ModelPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -104,9 +112,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE
-				.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-						: new ModelPackageImpl());
+		Object registeredModelPackage = EPackage.Registry.INSTANCE.get(eNS_URI);
+		ModelPackageImpl theModelPackage = registeredModelPackage instanceof ModelPackageImpl
+				? (ModelPackageImpl) registeredModelPackage
+				: new ModelPackageImpl();
 
 		isInited = true;
 
@@ -303,6 +312,42 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAllocationProblem() {
+		return allocationProblemEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAllocationProblem_Components() {
+		return (EReference) allocationProblemEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAllocationProblem_QualificationTypes() {
+		return (EReference) allocationProblemEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAllocationProblem_Persons() {
+		return (EReference) allocationProblemEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ModelFactory getModelFactory() {
 		return (ModelFactory) getEFactoryInstance();
 	}
@@ -350,6 +395,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		componentEClass = createEClass(COMPONENT);
 		createEReference(componentEClass, COMPONENT__TASKS);
 		createEAttribute(componentEClass, COMPONENT__NAME);
+
+		allocationProblemEClass = createEClass(ALLOCATION_PROBLEM);
+		createEReference(allocationProblemEClass, ALLOCATION_PROBLEM__COMPONENTS);
+		createEReference(allocationProblemEClass, ALLOCATION_PROBLEM__QUALIFICATION_TYPES);
+		createEReference(allocationProblemEClass, ALLOCATION_PROBLEM__PERSONS);
 	}
 
 	/**
@@ -434,6 +484,18 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 				IS_ORDERED);
 		initEAttribute(getComponent_Name(), theXMLTypePackage.getString(), "Name", null, 0, 1, Component.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(allocationProblemEClass, AllocationProblem.class, "AllocationProblem", !IS_ABSTRACT, !IS_INTERFACE,
+				IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAllocationProblem_Components(), this.getComponent(), null, "components", null, 0, -1,
+				AllocationProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAllocationProblem_QualificationTypes(), this.getQualification(), null, "qualificationTypes",
+				null, 0, -1, AllocationProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+				!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAllocationProblem_Persons(), this.getPerson(), null, "persons", null, 0, -1,
+				AllocationProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
+				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

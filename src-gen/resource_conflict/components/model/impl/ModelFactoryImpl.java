@@ -65,6 +65,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			return createAssignment();
 		case ModelPackage.COMPONENT:
 			return createComponent();
+		case ModelPackage.ALLOCATION_PROBLEM:
+			return createAllocationProblem();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -118,6 +120,16 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public Component createComponent() {
 		ComponentImpl component = new ComponentImpl();
 		return component;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AllocationProblem createAllocationProblem() {
+		AllocationProblemImpl allocationProblem = new AllocationProblemImpl();
+		return allocationProblem;
 	}
 
 	/**

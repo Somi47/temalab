@@ -1,0 +1,38 @@
+package resource_conflict.components.model.queries
+
+import epackage "http://www.example.org/model"
+
+
+pattern personWithNoName(p : Person) {
+    Person.Name(p,"");
+}
+
+pattern differentTaskLength(t:Task, a:Assignment) {
+	Task.assignment(t,a);
+	Task.Estimate(t,taskEstimatedTime);
+	Assignment.From(a,from);
+	Assignment.To(a,to);
+	difference == eval(to-from);
+	difference != taskEstimatedTime;
+}
+
+pattern intersectingAllocation(a1:Assignment, a2:Assignment, p:Person) {
+	Assignment.person(a1,p);
+	Assignment.person(a2,p);
+	a1 != a2;
+	Assignment.From(a1,f1);
+	Assignment.To(a1,t1);
+	Assignment.From(a2,f2);
+	check(f1 < f2);
+	check(f2 < t1);
+}
+
+pattern qualifications(p:Person, q:Qualification) {
+    Person.qualifications(p,q);
+}
+
+pattern unqualifiedAllocation(t:Task, p:Person) {
+	Task.qualificationsRequired(t,q);
+	Task.assignment.person(t,p);
+	neg find qualifications(p,q);
+}
